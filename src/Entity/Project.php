@@ -15,10 +15,10 @@ class Project
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
     #[ORM\Column]
-    private bool $Archive = false;
+    private bool $archive = false;
 
     /**
      * @var Collection<int, Employee>
@@ -35,7 +35,7 @@ class Project
     public function __construct()
     {
         $this->employees = new ArrayCollection();
-        $this->tasks = new ArrayCollection();
+        $this->tasks     = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -45,24 +45,24 @@ class Project
 
     public function getName(): ?string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): static
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function isArchive(): ?bool
     {
-        return $this->Archive;
+        return $this->archive;
     }
 
-    public function setArchive(bool $Archive): static
+    public function setArchive(bool $archive): static
     {
-        $this->Archive = $Archive;
+        $this->archive = $archive;
 
         return $this;
     }
@@ -77,7 +77,7 @@ class Project
 
     public function addEmployee(Employee $employee): static
     {
-        if (!$this->employees->contains($employee)) {
+        if (! $this->employees->contains($employee)) {
             $this->employees->add($employee);
         }
 
@@ -101,7 +101,7 @@ class Project
 
     public function addTask(Task $task): static
     {
-        if (!$this->tasks->contains($task)) {
+        if (! $this->tasks->contains($task)) {
             $this->tasks->add($task);
             $task->setProject($this);
         }
