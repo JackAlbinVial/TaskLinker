@@ -53,7 +53,7 @@ class Task
         return $this->Description;
     }
 
-    public function setDescription(string $Description): static
+    public function setDescription(?string $Description): static
     {
         $this->Description = $Description;
 
@@ -65,7 +65,7 @@ class Task
         return $this->Deadline;
     }
 
-    public function setDeadline(\DateTime $Deadline): static
+    public function setDeadline( ? \DateTime $Deadline): static
     {
         $this->Deadline = $Deadline;
 

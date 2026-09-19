@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau projet{% endblock %}
+{% block page_title %}Nouveau projet{% endblock %}
+
+{% block body %}
+    {{ form_start(formProject) }}
+        <div>
+            {{ form_label(formProject.name) }}
+            {{ form_widget(formProject.name) }}
+        </div>
+        <div>
+            {{ form_label(formProject.employees) }}
+            {{ form_widget(formProject.employees) }}
+        </div>
+        <br>
+        <button class="button button-submit">Continuer</button>
+    {{ form_end(formProject) }}
+{% endblock %}

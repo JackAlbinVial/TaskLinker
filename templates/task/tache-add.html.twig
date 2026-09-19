@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une tâche{% endblock %}
+{% block page_title %}Créer une tâche{% endblock %}
+
+{% block body %}
+    {{ form_start(formTask) }}
+        <div>{{ form_label(formTask.name) }}{{ form_widget(formTask.name) }}</div>
+        <div>{{ form_label(formTask.description) }}{{ form_widget(formTask.description) }}</div>
+        <div class="flex-form">
+            <div>{{ form_label(formTask.deadline) }}{{ form_widget(formTask.deadline) }}</div>
+            <div>{{ form_label(formTask.status) }}{{ form_widget(formTask.status) }}</div>
+        </div>
+        <div>{{ form_label(formTask.employees) }}{{ form_widget(formTask.employees) }}</div>
+        <br>
+        <button class="button button-submit">Ajouter</button>
+    {{ form_end(formTask) }}
+{% endblock %}

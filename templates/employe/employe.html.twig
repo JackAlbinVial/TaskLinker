@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ employee.firstname }} {{ employee.name }}
+{% endblock %}
+
+{% block page_title %}
+    {{ employee.firstname }} {{ employee.name }}
+{% endblock %}
+
+{% block body %}
+    {% if formEmployee is defined %}
+        {{ form_start(formEmployee) }}
+            <div>{{ form_label(formEmployee.name) }}{{ form_widget(formEmployee.name) }}</div>
+            <div>{{ form_label(formEmployee.firstname) }}{{ form_widget(formEmployee.firstname) }}</div>
+            <div>{{ form_label(formEmployee.mail) }}{{ form_widget(formEmployee.mail) }}</div>
+            <div class="form-flex">
+                <div>{{ form_label(formEmployee.date) }}{{ form_widget(formEmployee.date) }}</div>
+                <div>{{ form_label(formEmployee.status) }}{{ form_widget(formEmployee.status) }}</div>
+            </div>
+            <button class="button button-submit">Enregistrer</button>
+        {{ form_end(formEmployee) }}
+    {% else %}
+        <p><strong>Email :</strong> {{ employee.mail }}</p>
+        <p><strong>Date d'entrée :</strong> {{ employee.date|date('d/m/Y') }}</p>
+        <p><strong>Statut :</strong> {{ employee.status }}</p>
+        <a class="button" href="{{ path('employee_edit', { id: employee.id }) }}">Éditer</a>
+    {% endif %}
+{% endblock %}
