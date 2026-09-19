@@ -18,6 +18,7 @@
             <div>{{ form_label(formTask.employees) }}{{ form_widget(formTask.employees) }}</div>
             <br>
             <button class="button button-submit">Modifier</button>
+            <a href="{{ path('task_delete', { id: task.id }) }}" class="delete-task">Supprimer la tâche</a>
         {{ form_end(formTask) }}
     {% else %}
         <p>{{ task.description }}</p>

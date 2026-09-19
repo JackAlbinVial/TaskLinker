@@ -22,7 +22,7 @@
          <div class="tasks-list">
          {% for task in project.tasks %}
             {% if task.status == 'todo' %}
-               <a class="task" href="{{ path('task_show', { id: task.id }) }}">
+               <a class="task" href="{{ path('task_edit', { id: task.id }) }}">
                   <h3>{{ task.name }}</h3>
                   <p>{{ task.description }}</p>
                   <div class="task-infos">
@@ -47,7 +47,7 @@
          <div class="tasks-list">
          {% for task in project.tasks %}
             {% if task.status == 'doing' %}
-               <a class="task" href="{{ path('task_show', { id: task.id }) }}">
+               <a class="task" href="{{ path('task_edit', { id: task.id }) }}">
                   <h3>{{ task.name }}</h3>
                   <p>{{ task.description }}</p>
                   <div class="task-infos">
@@ -72,7 +72,7 @@
          <div class="tasks-list">
          {% for task in project.tasks %}
             {% if task.status == 'done' %}
-               <a class="task" href="{{ path('task_show', { id: task.id }) }}">
+               <a class="task" href="{{ path('task_edit', { id: task.id }) }}">
                   <h3>{{ task.name }}</h3>
                   <p>{{ task.description }}</p>
                   <div class="task-infos">

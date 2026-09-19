@@ -40,20 +40,6 @@ final class TaskController extends AbstractController
         ]);
     }
 
-    #[Route('/task/{id}', name: 'task_show', methods: ['GET'])]
-    public function show(TaskRepository $taskRepository, int $id): Response
-    {
-        $task = $taskRepository->find($id);
-
-        if (! $task) {
-            throw $this->createNotFoundException('Task not found');
-        }
-
-        return $this->render('task/tache.html.twig', [
-            'task' => $task,
-        ]);
-    }
-
     #[Route('/task/{id}/edit', name: 'task_edit', methods: ['GET', 'POST'])]
     public function edit(TaskRepository $taskRepository, EntityManagerInterface $taskManager, Request $request, int $id): Response
     {
@@ -69,7 +55,7 @@ final class TaskController extends AbstractController
         if ($formTask->isSubmitted() && $formTask->isValid()) {
             $taskManager->flush();
 
-            return $this->redirectToRoute('task_show', ['id' => $task->getId()]);
+            return $this->redirectToRoute('project_show', ['id' => $task->getProject()->getId()]);
         }
 
         return $this->render('task/tache.html.twig', [
@@ -77,5 +63,21 @@ final class TaskController extends AbstractController
             'task'     => $task,
             'is_edit'  => true,
         ]);
+    }
+
+    #[Route('/task/{id}/delete', name: 'task_delete')]
+    public function delete(TaskRepository $taskRepository, EntityManagerInterface $taskManager, int $id): Response
+    {
+        $task = $taskRepository->find($id);
+
+        if (! $task) {
+            return $this->redirectToRoute('project_index');
+        }
+
+        $projectId = $task->getProject()->getId();
+        $taskManager->remove($task);
+        $taskManager->flush();
+
+        return $this->redirectToRoute('project_show', ['id' => $projectId]);
     }
 }
