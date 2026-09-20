@@ -53,6 +53,10 @@ final class EmployeeController extends AbstractController
             return $this->redirectToRoute('employee_index');
         }
 
+        foreach ($employee->getTasks() as $task) {
+            $task->setEmployees(null);
+        }
+
         $employeeManager->remove($employee);
         $employeeManager->flush();
 
